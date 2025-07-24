@@ -80,7 +80,7 @@ const Cart: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   {/* Product Image */}
                   <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
-                    {item.product.images.length > 0 ? (
+                    {item.product.images && item.product.images.length > 0 ? (
                       <img
                         src={item.product.images[0]}
                         alt={item.product.name}

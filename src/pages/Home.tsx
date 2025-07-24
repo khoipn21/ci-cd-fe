@@ -91,7 +91,7 @@ const Home: React.FC = () => {
             {featuredProducts.map((product) => (
               <div key={product._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                 <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  {product.images.length > 0 ? (
+                  {product.images && product.images.length > 0 ? (
                     <img
                       src={product.images[0]}
                       alt={product.name}

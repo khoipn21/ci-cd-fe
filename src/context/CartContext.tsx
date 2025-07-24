@@ -94,8 +94,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       dispatch({
         type: 'SET_CART',
         payload: {
-          items: response.data.cart.items,
-          totalAmount: response.data.cart.totalAmount,
+          items: response.data.cart?.items || [],
+          totalAmount: response.data.cart?.totalAmount || 0,
         },
       });
     } catch (error: any) {
@@ -121,8 +121,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       dispatch({
         type: 'SET_CART',
         payload: {
-          items: response.data.cart.items,
-          totalAmount: response.data.cart.totalAmount,
+          items: response.data.cart?.items || [],
+          totalAmount: response.data.cart?.totalAmount || 0,
         },
       });
     } catch (error: any) {
@@ -146,8 +146,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       dispatch({
         type: 'SET_CART',
         payload: {
-          items: response.data.cart.items,
-          totalAmount: response.data.cart.totalAmount,
+          items: response.data.cart?.items || [],
+          totalAmount: response.data.cart?.totalAmount || 0,
         },
       });
     } catch (error: any) {
@@ -168,8 +168,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       dispatch({
         type: 'SET_CART',
         payload: {
-          items: response.data.cart.items,
-          totalAmount: response.data.cart.totalAmount,
+          items: response.data.cart?.items || [],
+          totalAmount: response.data.cart?.totalAmount || 0,
         },
       });
     } catch (error: any) {

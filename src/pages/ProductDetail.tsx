@@ -105,7 +105,7 @@ const ProductDetail: React.FC = () => {
           <div>
             <div className="mb-4">
               <div className="h-96 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
-                {product.images.length > 0 ? (
+                {product.images && product.images.length > 0 ? (
                   <img
                     src={product.images[selectedImage]}
                     alt={product.name}
@@ -117,7 +117,7 @@ const ProductDetail: React.FC = () => {
               </div>
             </div>
             
-            {product.images.length > 1 && (
+            {product.images && product.images.length > 1 && (
               <div className="flex space-x-2 overflow-x-auto">
                 {product.images.map((image, index) => (
                   <button

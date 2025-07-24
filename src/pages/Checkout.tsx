@@ -235,7 +235,7 @@ const Checkout: React.FC = () => {
               {items.map((item) => (
                 <div key={item._id} className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
-                    {item.product.images.length > 0 ? (
+                    {item.product.images && item.product.images.length > 0 ? (
                       <img
                         src={item.product.images[0]}
                         alt={item.product.name}
