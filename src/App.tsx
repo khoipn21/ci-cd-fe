@@ -14,7 +14,10 @@ import ApiDebug from './components/ApiDebug';
 import './App.css';
 
 function App() {
-  console.log('App component rendering...');
+  console.log('[App] Component rendering...');
+  console.log('[App] Current URL:', window.location.href);
+  console.log('[App] Environment:', import.meta.env.MODE);
+  console.log('[App] Base URL from env:', import.meta.env.VITE_API_URL);
   
   return (
     <AuthProvider>

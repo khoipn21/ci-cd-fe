@@ -8,17 +8,28 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  console.log('[Layout] Rendering layout component');
+  
   const { user, logout } = useAuth();
   const { items } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log('[Layout] Layout state:', {
+    hasUser: !!user,
+    userEmail: user?.email,
+    cartItems: items?.length || 0,
+    currentPath: location.pathname
+  });
+
   const handleLogout = () => {
+    console.log('[Layout] Logging out user');
     logout();
     navigate('/');
   };
 
-  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+  const cartItemCount = items?.reduce((total, item) => total + item.quantity, 0) || 0;
+  console.log('[Layout] Cart item count:', cartItemCount);
 
   return (
     <div className="min-h-screen bg-gray-50">

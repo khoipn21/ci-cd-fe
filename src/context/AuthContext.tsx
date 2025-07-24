@@ -87,15 +87,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Load user on initial load
   useEffect(() => {
     const loadUser = async () => {
+      console.log('[AuthContext] Loading user on initial load...');
+      console.log('[AuthContext] Current token from state:', state.token ? `${state.token.substring(0, 20)}...` : 'none');
+      
       if (state.token) {
         try {
+          console.log('[AuthContext] Fetching user profile...');
           const response = await api.get('/auth/me');
+          console.log('[AuthContext] User profile response:', response.data);
           dispatch({
             type: 'LOGIN_SUCCESS',
             payload: { user: response.data.user, token: state.token },
           });
+          console.log('[AuthContext] User loaded successfully');
         } catch (error) {
+          console.error('[AuthContext] Failed to load user:', error);
           dispatch({ type: 'LOGOUT' });
+          console.log('[AuthContext] User logged out due to failed profile fetch');
         }
       }
     };

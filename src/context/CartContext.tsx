@@ -78,19 +78,38 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { user, token } = useAuth();
 
   useEffect(() => {
+    console.log('[CartContext] User/token changed:', { 
+      hasUser: !!user, 
+      hasToken: !!token,
+      userEmail: user?.email 
+    });
+    
     if (user && token) {
+      console.log('[CartContext] Fetching cart for authenticated user...');
       fetchCart();
     } else {
+      console.log('[CartContext] Clearing cart - no user or token');
       dispatch({ type: 'CLEAR_CART' });
     }
   }, [user, token]);
 
   const fetchCart = async () => {
-    if (!token) return;
+    console.log('[CartContext] fetchCart called, token:', !!token);
+    if (!token) {
+      console.log('[CartContext] No token available, skipping cart fetch');
+      return;
+    }
     
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
+      console.log('[CartContext] Fetching cart from API...');
       const response = await api.get('/cart');
+      console.log('[CartContext] Cart fetch successful:', {
+        hasItems: !!response.data.cart?.items,
+        itemCount: response.data.cart?.items?.length || 0,
+        totalAmount: response.data.cart?.totalAmount
+      });
+      
       dispatch({
         type: 'SET_CART',
         payload: {
@@ -99,6 +118,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
       });
     } catch (error: any) {
+      console.error('[CartContext] Failed to fetch cart:', error);
       dispatch({
         type: 'SET_ERROR',
         payload: error.response?.data?.error || 'Failed to fetch cart',
