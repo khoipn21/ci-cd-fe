@@ -14,6 +14,8 @@ import ApiDebug from './components/ApiDebug';
 import './App.css';
 
 function App() {
+  console.log('App component rendering...');
+  
   return (
     <AuthProvider>
       <CartProvider>
